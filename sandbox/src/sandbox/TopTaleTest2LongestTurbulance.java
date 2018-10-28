@@ -2,7 +2,7 @@ package sandbox;
 
 import java.util.Arrays;
 
-public class TopTalTest2LongestTurbulance {
+public class TopTaleTest2LongestTurbulance {
 	public static void main(String[] args) {
 		caller(new int[] { 9, 9, 9, 4, 2, 10, 7, 8, 8, 1, 9 });
 		caller(new int[] { 9, 4, 2, 10, 7, 8, 8, 1, 9 });

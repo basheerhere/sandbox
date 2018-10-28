@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author bash
  *
  */
-public class TopTalTask1 {
+public class TopTaleTask1ArraySplitToXvsNonX {
 
 	public static void main(String[] args) {
 		caller(5, new int[] { 5, 5, 2, 3, 5, 1, 6 });

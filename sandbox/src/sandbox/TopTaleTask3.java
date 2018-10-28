@@ -17,7 +17,7 @@ import java.util.Queue;
  * @author bash
  *
  */
-public class TopTalTask3 {
+public class TopTaleTask3 {
 
 	public static void main(String[] args) {
 		caller(2, 1); // 1
