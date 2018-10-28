@@ -11,6 +11,9 @@ import java.util.Queue;
  * 
  * https://github.com/Jarosh/Exercises/wiki/Finding-the-shortest-path-as-for-knight--in-the-game-of-chess-on-an-infinite-board-(WARNING:-solution-for-%22can't-move-backward%22-scenario-that-isn't-actually-implied-by-the-original-problem).
  * 
+ * Refer below for problem definition:
+ * https://cloud.githubusercontent.com/assets/375123/12902375/cff946e2-ce75-11e5-841f-93ef6d28ebe1.png
+ * 
  * @author bash
  *
  */
@@ -26,19 +29,19 @@ public class TopTalTask3 {
 		caller(3, 6); // 3
 
 		caller(1, 1); // ???
-		caller(3, 10006); // ???
 
 		caller(10, 20); // 10
-		caller(100, 200); // 100
-		caller(1000, 2000); // 1000
-		caller(10000, 20000); // 10000
-		caller(100000, 200000); // 100000
-
-		caller(-10, -20); // 10
-		caller(-100, -200); // 100
-		caller(-1000, -2000); // 1000
-		caller(-10000, -20000); // 10000
-		caller(-100000, -200000); // 100000
+//		caller(100, 200); // 100
+//		caller(1000, 2000); // 1000
+//		caller(10000, 20000); // 10000
+//		caller(100000, 200000); // 100000
+//
+//		caller(-10, -20); // 10
+//		caller(-100, -200); // 100
+//		caller(-1000, -2000); // 1000
+//		caller(-10000, -20000); // 10000
+//		caller(-100000, -200000); // 100000
+		caller(3, 10006); // ???
 	}
 
 	public static void caller(int A, int B) {
@@ -54,7 +57,7 @@ public class TopTalTask3 {
 	 * @param targetY
 	 * @return
 	 */
-	public static int slowestSolution(int targetX, int targetY) {
+	public static int solutionSlowest(int targetX, int targetY) {
 		int[] rowMoveDistance = { 2, 2, -2, -2, 1, 1, -1, -1 };
 		int[] columnMoveDistance = { 1, -1, -1, 1, 2, -2, 2, -2 };
 		Map<ChessBoardCell, Boolean> visitedCellsMap = new HashMap<ChessBoardCell, Boolean>();
@@ -97,7 +100,9 @@ public class TopTalTask3 {
 	 * 
 	 * For e.g.,
 	 * 
-	 * 2x = 1y -> x/y = 1/2 -> x/y = 0.5 2y = 1x -> x/y = 2/1 -> x/y = 2
+	 * 2x = 1y -> x/y = 1/2 -> x/y = 0.5
+	 * 
+	 * 2y = 1x -> x/y = 2/1 -> x/y = 2
 	 * 
 	 * Hence, moving on the positive quadrant (+X, +Y) leads to the formula:
 	 * 
@@ -105,7 +110,9 @@ public class TopTalTask3 {
 	 * 
 	 * Moving on the negative quadrants leads to the formula
 	 * 
-	 * -2x = 1y -> -x/y = 1/2 -> x/y = -0.5 2y = -1x -> -x/y = 2/1 -> x/y = -2
+	 * -2x = 1y -> -x/y = 1/2 -> x/y = -0.5
+	 * 
+	 * 2y = -1x -> -x/y = 2/1 -> x/y = -2
 	 * 
 	 * ( x/y <= -0.5 && x/y >= -2 )
 	 * 
@@ -119,7 +126,7 @@ public class TopTalTask3 {
 	 * points located on the boundaries represent extreme cases with either 1:2 or
 	 * 2:1 ratio of X to Y, and the diagonal is built by just subtracting 1 from Y
 	 * and adding 1 to X. Hence to check if a cell is reachable, we can use the
-	 * folrmula:
+	 * formula:
 	 * 
 	 * ( (x+y) % 3 == 0 )
 	 * 
@@ -137,12 +144,29 @@ public class TopTalTask3 {
 	 * @param targetY
 	 * @return
 	 */
-	public static int solution(int targetX, int targetY) {
+	public static int forwardOnlysolution(int targetX, int targetY) {
 		double targetXByTargetY = (double) targetX / targetY;
 
 		return (((targetX + targetY) % 3 == 0) && ((targetXByTargetY >= 0.5 && targetXByTargetY <= 2)
 				|| (targetXByTargetY <= -0.5 && targetXByTargetY >= -2))
-						? (((targetX + targetY) / 3 <= 100000) ? Math.abs((targetX + targetY) / 3) : -2)
+						? (((targetX + targetY) / 3 <= 100000000) ? Math.abs((targetX + targetY) / 3) : -2)
 						: -1);
+	}
+
+	/**
+	 * Incorrect.
+	 * 
+	 * @param targetX
+	 * @param targetY
+	 * @return
+	 */
+	public static int solution(int targetX, int targetY) {
+		double targetXByTargetY = (double) targetX / targetY;
+
+		if (targetY > (double) targetX / 2) {
+			return ((targetX + targetY) / 3 <= 100000000) ? Math.abs((targetX + targetY) / 3) : -2;
+		} else {
+			return (targetX / 2 <= 100000000) ? Math.abs(targetX / 2) : -2;
+		}
 	}
 }

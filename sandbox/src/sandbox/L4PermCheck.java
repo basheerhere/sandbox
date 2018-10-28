@@ -47,7 +47,7 @@ public class L4PermCheck {
 	 * @return
 	 */
 	public static int solution(int[] A) {
-		boolean[] alreadyEncounteredThisNumber = new boolean[A.length];
+		boolean[] alreadyEncounteredNumbers = new boolean[A.length];
 
 		for (int i : A) {
 			if (i < 0 || i > A.length) {
@@ -56,10 +56,10 @@ public class L4PermCheck {
 
 			// Carefully avoid ArrayIndexOutOfBounds here by assigning to the index - 1th
 			// element
-			if (alreadyEncounteredThisNumber[i - 1] == true) {
+			if (alreadyEncounteredNumbers[i - 1] == true) {
 				return 0;
 			}
-			alreadyEncounteredThisNumber[i - 1] = true;
+			alreadyEncounteredNumbers[i - 1] = true;
 		}
 
 		return 1;
