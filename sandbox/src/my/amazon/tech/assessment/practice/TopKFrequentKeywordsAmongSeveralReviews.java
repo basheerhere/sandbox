@@ -32,6 +32,7 @@ Output:
 
 Explanation:
 "anacell" is occuring in 2 different reviews and "betacellular" is only occuring in 1 review.
+
 Example 2:
 
 Input:
@@ -50,6 +51,8 @@ Output:
 
 Explanation:
 "betacellular" is occuring in 3 different reviews. "anacell" and "deltacellular" are occuring in 2 reviews, but "anacell" is lexicographically smaller.
+
+IMPORTANT NOTE: Although 'anacell' is occurring 3 times, it only appears in 2 reviews. So, make sure to count the keyword only once per review.
  * 
  * </pre>
  * 

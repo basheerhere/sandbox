@@ -40,7 +40,7 @@ At the end of the 2nd hour, the status of the grid:
 public class ZombieInMatrix {
 	public static void main(String[] args) {
 		int[][] grid = { { 0, 1, 1, 0, 1 }, { 0, 1, 0, 1, 0 }, { 0, 0, 0, 0, 1 }, { 0, 1, 0, 0, 0 } };
-		System.out.println(minDays(grid));
+		System.out.println("Total minutes to convert all humans to zombies: " + minDays(grid));
 	}
 
 	private static int minDays(int[][] grid) {
@@ -88,13 +88,16 @@ public class ZombieInMatrix {
 					// If there is a human at the target location (ni, nj), turn them to a zombie &
 					// increment zombie count to compare against the target count
 					if (ni >= 0 && ni < grid.length && nj >= 0 && nj < grid[0].length && grid[ni][nj] == 0) {
+						System.out.format("Found a human to convert at location: [%d, %d]\n", ni, nj);
 						cnt++;
 						q.offer(new int[] { ni, nj });
 						grid[ni][nj] = 1;
 					}
 				}
 			}
+
 			res++;
+			System.out.println("Moiving to next minute: " + res);
 		}
 
 		// If reached here, there were no zombies to begin with and so it's not possible
